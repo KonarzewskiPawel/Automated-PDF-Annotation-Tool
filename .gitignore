@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+.venv/
+
+# IDE
+.idea/
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+
+# Environment
+.env
+
+# Sandcastle runtime artifacts (committed config files are tracked)
+.sandcastle/
+sandcastle-runner/

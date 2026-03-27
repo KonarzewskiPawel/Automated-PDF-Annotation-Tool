@@ -1,0 +1,44 @@
+rules:
+  # Tick mark (✓) — green, right of text, all occurrences
+  - name: "Tick Total Revenue"
+    type: tick
+    search: "Total Revenue"
+    position: right
+    match: all
+
+  # Tick mark — left of text, only first occurrence
+  - name: "Tick Gross Profit First"
+    type: tick
+    search: "Gross Profit"
+    position: left
+    match: first
+
+  # Red flag (⚑) — above text, all occurrences
+  - name: "Flag Net Income"
+    type: flag
+    search: "Net Income"
+    position: below
+    match: all
+
+  # Red flag — below text, only occurrences on page 1
+  - name: "Flag Total Equity Page 1"
+    type: flag
+    search: "Total Equity"
+    position: below
+    match: "page:1"
+
+  # Blue back-reference arrow (←) — right of text, with x-offset
+  - name: "Ref Cash Flow"
+    type: back_reference
+    search: "Cash Flow"
+    position: right
+    match: all
+    offset_x: 2.0
+
+  # Green paragraph end (/) — flush right against full stop, all occurrences
+  - name: "Para End Period"
+    type: paragraph_end
+    search: "Total."
+    position: flush_right
+    match: all
+    offset_y: -1.0

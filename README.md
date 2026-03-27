@@ -25,6 +25,18 @@ You describe *what to mark* and *how to mark it* in a simple YAML file. The tool
 
 ---
 
+## Technical implementation
+
+Two requirements that previous implementations commonly get wrong — this tool addresses both explicitly.
+
+**`add_freetext_annot()`**
+All marks (ticks, flags, arrows, badges, shading badges) are placed using PyMuPDF's `page.add_freetext_annot()`. This writes a proper PDF FreeText annotation object — not a drawing or an image overlay — which means annotations are selectable, searchable, and handled correctly by PDF viewers and downstream processing tools. See `src/pdf_annotation_tool/mark_placer.py`.
+
+**Incremental save**
+After annotations are written, the file is saved using `doc.save(output_path, incremental=True, encryption=fitz.PDF_ENCRYPT_KEEP)`. Incremental save appends changes to the end of the PDF without rewriting or reparsing the original content. This preserves the document's internal structure, existing metadata, and any security settings — the original bytes are never touched. See `src/pdf_annotation_tool/service.py`.
+
+---
+
 ## Prerequisites
 
 You need two tools installed on your machine before starting:
